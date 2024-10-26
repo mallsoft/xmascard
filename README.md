@@ -1,10 +1,13 @@
 # Mallsoft xmas project turbo mode
 
+![Screenshot](screen.jpg)
+
 ## Developing
 
 ```bash
+pnpm i
 pnpm run dev
 
-# or start the server and open the app in a new browser tab
-pnpm run dev -- --open
+# you also need a postgres db set up and a connection string...
+DATABASE_URL
 ```

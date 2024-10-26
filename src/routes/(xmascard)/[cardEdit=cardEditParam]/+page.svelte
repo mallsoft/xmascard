@@ -1,36 +1,28 @@
-<script>
+<script lang="ts">
 	import { enhance } from '$app/forms';
-	import { page } from '$app/stores';
-	import Popover from '$lib/components/Popover.svelte';
-	import Qrcode from '$lib/components/Qrcode.svelte';
+	import QrButton from './QrButton.svelte';
 
-	export let data;
-	// export let form;
-
-	const editMode = Boolean(data.key);
+	let { data } = $props();
 </script>
 
 <article>
-	{#if editMode}
+	{#if data.key}
 		<h1>Sprinkle some more x-mas spirit on dat!</h1>
-		<Popover buttonText="show qr code" id="qrview">
-			<Qrcode
-				content={`${$page.url.protocol}//${$page.url.host}/${data.key}`}
-			/>
-		</Popover>
+		<QrButton key={data.key} />
 	{:else}
 		<h1>Create a new xmas card!</h1>
 	{/if}
 	<form
 		use:enhance
-		action="?/{editMode ? 'editcard' : 'createcard'}"
+		action="?/{data.key ? 'editcard' : 'createcard'}"
 		method="POST"
+		autocomplete="off"
 	>
 		<label for="title">Title</label>
 		<input type="text" name="title" required value={data.title} />
 		<label for="message">Message</label>
 		<textarea name="message" rows="5" maxlength="400">{data.message}</textarea>
-		<button type="submit">{editMode ? 'Update' : 'Create!'}</button>
+		<button type="submit">{data.key ? 'Update' : 'Create!'}</button>
 	</form>
 </article>
 

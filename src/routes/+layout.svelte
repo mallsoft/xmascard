@@ -1,15 +1,13 @@
 <script>
 	import '../global.css';
-	import DevDataStoreView from '$lib/components/DevDataStoreView.svelte';
-	import Snow from '$lib/components/snow/Snow.svelte';
+	import Snowfall from '$lib/components/snow/Snowfall.svelte';
+	import Tree from '$lib/components/Tree.svelte';
 
 	let { children } = $props();
 </script>
 
-<DevDataStoreView />
-
-<Snow />
-<Snow zIndex={1} flakeCount={30} flakeMin={4} flakeMax={8} />
+<Snowfall />
+<Tree />
 
 <main>
 	{@render children?.()}

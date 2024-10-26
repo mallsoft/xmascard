@@ -1,7 +1,7 @@
 import { db } from '$lib/server/db';
 import { cardTable } from '$lib/server/db/schema';
 import { fail, redirect } from '@sveltejs/kit';
-import { eq } from 'drizzle-orm';
+import { and, eq } from 'drizzle-orm';
 import type { PageServerLoad, Actions } from './$types';
 
 export const load: PageServerLoad = async ({ params: { cardEdit } }) => {
@@ -22,7 +22,7 @@ export const load: PageServerLoad = async ({ params: { cardEdit } }) => {
 			key: cardTable.viewKey
 		})
 		.from(cardTable)
-		.where(eq(cardTable.viewKey, viewKey))
+		.where(and(eq(cardTable.viewKey, viewKey), eq(cardTable.editKey, editKey)))
 		.limit(1);
 
 	const card = res[0];
@@ -38,7 +38,7 @@ export const actions: Actions = {
 		const message: string = data.get('message') as string;
 
 		if (!title) {
-			fail(400, { message: 'why man?' });
+			fail(400, { message: 'Invalid title' });
 		}
 
 		const res = await db
@@ -49,35 +49,33 @@ export const actions: Actions = {
 			})
 			.returning({ view: cardTable.viewKey, edit: cardTable.editKey });
 
-		console.log('created', res);
-
 		const { view, edit } = res[0];
+		console.log('created', view);
 
 		redirect(301, `/${view}_${edit}`);
 	},
 
-	editcard: async ({ request }) => {
+	editcard: async ({ request, params }) => {
 		const data = await request.formData();
 
 		const title: string = data.get('title') as string;
 		const message: string = data.get('message') as string;
 
+		const key = params.cardEdit;
+		const [viewKey, editKey] = key.split('_');
+
 		if (!title) {
-			fail(400, { message: 'why man?' });
+			fail(400, { message: 'Invalid title' });
 		}
 
 		const res = await db
-			.insert(cardTable)
-			.values({
+			.update(cardTable)
+			.set({
 				cardTitle: title,
 				cardText: message
 			})
-			.returning();
-
-		console.log('updated', res);
-
-		const card = res[0];
-
-		return card;
+			.where(
+				and(eq(cardTable.viewKey, viewKey), eq(cardTable.editKey, editKey))
+			);
 	}
 };

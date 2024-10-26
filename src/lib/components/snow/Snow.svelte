@@ -7,7 +7,13 @@
 	let canvasElement: HTMLCanvasElement;
 	let flakes: SnowFlake[] = [];
 
-	let { flakeCount = 0, flakeMin = 0, flakeMax = 0, zIndex = 0 } = $props();
+	let {
+		flakeCount = 0,
+		flakeMin = 0,
+		flakeMax = 0,
+		zIndex = 0,
+		blur = 0
+	} = $props();
 
 	class Throttle {
 		callback: Function;
@@ -85,7 +91,10 @@
 	}}
 />
 
-<canvas style="z-index:{zIndex};" aria-hidden="true" bind:this={canvasElement}
+<canvas
+	style="z-index:{zIndex}; --blur:{blur ?? 0}px;"
+	aria-hidden="true"
+	bind:this={canvasElement}
 ></canvas>
 
 <style>
@@ -101,11 +110,12 @@
 
 		animation: fadein 3s backwards ease-in-out;
 
-		filter: opacity(0.9) drop-shadow(5px 8px 2px rgba(0, 0, 0, 0.05));
+		filter: blur(var(--blur)) opacity(0.9)
+			drop-shadow(5px 8px 2px rgba(0, 0, 0, 0.05));
 	}
 	@media (prefers-color-scheme: dark) {
 		canvas {
-			filter: opacity(0.6);
+			filter: blur(var(--blur)) opacity(0.6);
 		}
 	}
 
