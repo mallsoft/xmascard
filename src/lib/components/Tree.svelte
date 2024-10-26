@@ -31,7 +31,7 @@
 			fill="#573107"
 			d="M78 245c-18-33 35-38 42 20-9-7-14-15-14-15-10 1-7 13-7 13-3-13-21-18-21-18Z"
 		/>
-		<g style:--swaytime="{2 * Math.random() + 1}s">
+		<g style:--swaytime="{3 * Math.random() + 1}s">
 			<path
 				fill="#0f4500"
 				d="M141 269c-1-9-4-17-8-24-10 8-13 14-13 14-9-7-14-15-14-15-10 1-7 14-7 14-3-13-21-19-21-19-14 5-30 22-30 22l-21-14c-20 6-22 13-22 13-1-33 74-133 94-165 36 48 73 92 96 177-9-6-11-16-22-14l-7 14s-3-13-23-27c3 10 2 18-2 24Z"
@@ -101,10 +101,10 @@
 
 	@keyframes sway {
 		to {
-			transform: rotate(-3deg);
+			transform: rotate(-2deg);
 		}
 		from {
-			transform: rotate(3deg);
+			transform: rotate(2deg);
 		}
 	}
 
@@ -116,7 +116,7 @@
 		left: 0;
 		width: 100%;
 		max-height: 100vh;
-		height: 40cqh;
+		height: 30cqh;
 
 		overflow: hidden;
 	}
