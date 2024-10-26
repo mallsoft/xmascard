@@ -4,7 +4,8 @@ html {
 }
 
 body {
-	background-color: navy;
+	background-color: midnightblue;
+	background: linear-gradient(midnightblue, rebeccapurple);
 	color: snow;
 }
 

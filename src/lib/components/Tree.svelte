@@ -17,7 +17,7 @@
 	<svg
 		viewBox="0 0 200 335"
 		style:transform={`translateX(calc(${x}cqw - 55%)) scale(${s}) scaleX(${Math.random() > 0.5 ? 1 : -1})`}
-		style:filter={`brightness(${s}) drop-shadow(0px 10px 20px rgba(0,0,0,0.5))`}
+		style:filter={`sepia(${1 - s}) drop-shadow(0px 10px 20px rgba(0,0,0,0.25))`}
 	>
 		<path
 			fill="#643808"
