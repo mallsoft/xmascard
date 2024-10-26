@@ -1,0 +1,53 @@
+html {
+	height: 100%;
+	background-color: rebeccapurple;
+}
+
+body {
+	background-color: navy;
+	color: snow;
+}
+
+body {
+	margin: 0;
+	font-family: sans-serif;
+	font-size: x-large;
+
+	min-height: 100%;
+
+	display: flex;
+}
+
+a {
+	color: inherit;
+}
+
+a:visited {
+	color: color-mix(in srgb, currentColor, #1d1d1d 10%);
+}
+
+a:not(:hover) {
+	text-decoration: none;
+}
+
+button,
+input,
+textarea {
+	color: navy;
+	background-color: aliceblue;
+	font: inherit;
+	border: 2px solid rgba(0, 0, 0, 0.125);
+	border-radius: 0.25rem;
+}
+
+form {
+	background: rgba(0, 0, 0, 0.4);
+	border: 2px solid rgba(0, 0, 0, 0.125);
+	backdrop-filter: blur(10px);
+
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	padding: 1rem;
+	border-radius: 0.25rem;
+}
