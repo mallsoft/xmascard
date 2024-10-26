@@ -2,25 +2,23 @@
 	import { browser } from '$app/environment';
 
 	const randomX = () => {
-		return Math.random() * (window.innerWidth + 200) - 100;
+		return Math.random() * 100;
 	};
 	const randomSize = () => {
 		return 0.25 + Math.random() * 0.75;
 	};
 
-	const trees = browser
-		? Array.from({ length: 15 })
-				.map(() => {
-					return { x: randomX(), s: randomSize() };
-				})
-				.sort((a, b) => a.s - b.s)
-		: null;
+	const trees = Array.from({ length: 20 })
+		.map(() => {
+			return { x: randomX(), s: randomSize() };
+		})
+		.sort((a, b) => a.s - b.s);
 </script>
 
 {#snippet tree(x: number, s: number)}
 	<svg
 		viewBox="0 0 200 335"
-		style:transform={`translateX(${x}px) scale(${s}) scaleX(${Math.random() > 0.5 ? 1 : -1})`}
+		style:transform={`translateX(calc(${x}cqw - 55%)) scale(${s}) scaleX(${Math.random() > 0.5 ? 1 : -1})`}
 		style:filter={`brightness(${s}) drop-shadow(0px 20px 20px rgba(0,0,0,0.2))`}
 	>
 		<path
@@ -93,7 +91,7 @@
 		left: 0;
 		position: absolute;
 		height: 100%;
-		transform-origin: bottom center;
+		transform-origin: bottom;
 	}
 
 	svg g {
