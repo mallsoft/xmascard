@@ -1,6 +1,4 @@
 <script lang="ts">
-	import { browser } from '$app/environment';
-
 	const randomX = () => {
 		return Math.random() * 100;
 	};
@@ -8,7 +6,7 @@
 		return 0.25 + Math.random() * 0.75;
 	};
 
-	const trees = Array.from({ length: 20 })
+	const trees = Array.from({ length: 10 })
 		.map(() => {
 			return { x: randomX(), s: randomSize() };
 		})
@@ -19,7 +17,7 @@
 	<svg
 		viewBox="0 0 200 335"
 		style:transform={`translateX(calc(${x}cqw - 55%)) scale(${s}) scaleX(${Math.random() > 0.5 ? 1 : -1})`}
-		style:filter={`brightness(${s}) drop-shadow(0px 20px 20px rgba(0,0,0,0.2))`}
+		style:filter={`brightness(${s}) drop-shadow(0px 10px 20px rgba(0,0,0,0.5))`}
 	>
 		<path
 			fill="#643808"
@@ -92,11 +90,13 @@
 		position: absolute;
 		height: 100%;
 		transform-origin: bottom;
+		will-change: transform, filter;
 	}
 
 	svg g {
 		transform-origin: center bottom;
 		animation: sway var(--swaytime) infinite alternate;
+		will-change: transform;
 	}
 
 	@keyframes sway {
