@@ -1,10 +1,11 @@
 <script>
+	import { enhance } from '$app/forms';
 	import { page } from '$app/stores';
 	import Popover from '$lib/components/Popover.svelte';
 	import Qrcode from '$lib/components/Qrcode.svelte';
 
 	export let data;
-	export let form;
+	// export let form;
 
 	const editMode = Boolean(data.key);
 </script>
@@ -20,12 +21,16 @@
 	{:else}
 		<h1>Create a new xmas card!</h1>
 	{/if}
-	<form action="?/{editMode ? 'editcard' : 'createcard'}" method="POST">
+	<form
+		use:enhance
+		action="?/{editMode ? 'editcard' : 'createcard'}"
+		method="POST"
+	>
 		<label for="title">Title</label>
-		<input type="text" name="title" required />
+		<input type="text" name="title" required value={data.title} />
 		<label for="message">Message</label>
-		<textarea name="message" rows="5" maxlength="400"></textarea>
-		<button type="submit">Create!</button>
+		<textarea name="message" rows="5" maxlength="400">{data.message}</textarea>
+		<button type="submit">{editMode ? 'Update' : 'Create!'}</button>
 	</form>
 </article>
 

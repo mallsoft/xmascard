@@ -54,5 +54,30 @@ export const actions: Actions = {
 		const { view, edit } = res[0];
 
 		redirect(301, `/${view}_${edit}`);
+	},
+
+	editcard: async ({ request }) => {
+		const data = await request.formData();
+
+		const title: string = data.get('title') as string;
+		const message: string = data.get('message') as string;
+
+		if (!title) {
+			fail(400, { message: 'why man?' });
+		}
+
+		const res = await db
+			.insert(cardTable)
+			.values({
+				cardTitle: title,
+				cardText: message
+			})
+			.returning();
+
+		console.log('updated', res);
+
+		const card = res[0];
+
+		return card;
 	}
 };

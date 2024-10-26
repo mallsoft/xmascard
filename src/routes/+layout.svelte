@@ -9,6 +9,7 @@
 <DevDataStoreView />
 
 <Snow />
+<Snow zIndex={1} flakeCount={30} flakeMin={4} flakeMax={8} />
 
 <main>
 	{@render children?.()}

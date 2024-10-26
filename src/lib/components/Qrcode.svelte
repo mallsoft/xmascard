@@ -47,5 +47,6 @@
 <style>
 	canvas {
 		border-radius: 4px;
+		display: block;
 	}
 </style>

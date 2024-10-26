@@ -6,8 +6,12 @@
 {#if dev}
 	<pre>
 {JSON.stringify($page.data, null, 2)}
-{JSON.stringify($page.form, null, 2)}
-{JSON.stringify($page.error, null, 2)}
+{#if $page.form}
+			Form:{JSON.stringify($page.form, null, 2)}
+		{/if}
+{#if $page.error}
+			Error:{JSON.stringify($page.error, null, 2)}
+		{/if}
 </pre>
 {/if}
 
@@ -16,9 +20,9 @@
 		top: 0;
 		right: 0;
 		position: fixed;
-		background: rgba(0, 0, 0, 0.4);
 		border: 2px solid rgba(0, 0, 0, 0.125);
-		backdrop-filter: blur(10px);
+		background-color: rgba(0, 0, 0, 0.3);
+		backdrop-filter: blur(5px);
 		color: whitesmoke;
 		border-radius: 6px;
 		max-width: 400px;

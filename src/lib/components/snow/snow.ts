@@ -23,7 +23,7 @@ export class SnowFlake {
 		this.max = max || SnowFlake.large;
 		this.r = Math.floor(Math.random() * (this.max - this.min + 1)) + this.min;
 
-		this.fallSpeed = this.r * 0.1 + Math.random();
+		this.fallSpeed = this.r * 0.05 + Math.random();
 	}
 
 	draw(ctx: CanvasRenderingContext2D) {

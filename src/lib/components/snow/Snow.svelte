@@ -7,7 +7,7 @@
 	let canvasElement: HTMLCanvasElement;
 	let flakes: SnowFlake[] = [];
 
-	let { flakeCount = 0, flakeMin = 0, flakeMax = 0 } = $props();
+	let { flakeCount = 0, flakeMin = 0, flakeMax = 0, zIndex = 0 } = $props();
 
 	class Throttle {
 		callback: Function;
@@ -41,7 +41,8 @@
 		}
 	}
 
-	const clamp = (x: number, min: number, max: number) => Math.min(Math.max(x, min), max);
+	const clamp = (x: number, min: number, max: number) =>
+		Math.min(Math.max(x, min), max);
 
 	const throttledResize = new Throttle(() => {
 		canvasElement.width = innerWidth;
@@ -84,14 +85,14 @@
 	}}
 />
 
-<canvas aria-hidden="true" bind:this={canvasElement}></canvas>
+<canvas style="z-index:{zIndex};" aria-hidden="true" bind:this={canvasElement}
+></canvas>
 
 <style>
 	canvas {
 		pointer-events: none;
 
 		position: fixed;
-		z-index: 5;
 		top: 0;
 		left: 0;
 		width: 100%;
