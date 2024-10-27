@@ -29,3 +29,18 @@ export const getCookieStore = (
 
 	return JSON.parse(res);
 };
+
+export const removeFromCookieStore = (
+	cookieCtx: Cookies,
+	keyToRemove: string
+): StoredCard[] | undefined => {
+	const res = cookieCtx.get('cards');
+	if (!res) return;
+
+	const cards = JSON.parse(res) as StoredCard[];
+	const filtered = cards.filter((c) => c.key !== keyToRemove);
+
+	cookieCtx.set('cards', JSON.stringify(filtered), { path: '/' });
+
+	return filtered;
+};

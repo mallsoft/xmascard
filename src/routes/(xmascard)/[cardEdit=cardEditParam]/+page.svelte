@@ -38,4 +38,16 @@
 	textarea {
 		resize: none;
 	}
+
+	form {
+		border: 2px solid rgba(0, 0, 0, 0.125);
+		background-color: rgba(0, 0, 0, 0.3);
+		backdrop-filter: blur(5px);
+
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+		padding: 1rem;
+		border-radius: 0.25rem;
+	}
 </style>

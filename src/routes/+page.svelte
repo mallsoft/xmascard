@@ -1,6 +1,13 @@
-<script>
+<script lang="ts">
 	let { data } = $props();
 </script>
+
+{#snippet deleter(key: string)}
+	<form action="?/forgetcard" method="POST">
+		<input type="hidden" name="key" value={key} />
+		<button type="submit">remove</button>
+	</form>
+{/snippet}
 
 <article>
 	<a href="/create">create a new xmas card!</a>
@@ -14,6 +21,7 @@
 						<a href="/{key}">
 							{title}
 						</a>
+						{@render deleter(key)}
 					</li>
 				{/each}
 			</ul>
@@ -41,7 +49,8 @@
 	}
 
 	li {
-		display: block;
+		display: flex;
+		justify-content: space-between;
 		background-color: aliceblue;
 	}
 </style>
