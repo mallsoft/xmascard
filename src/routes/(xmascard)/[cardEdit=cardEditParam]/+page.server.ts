@@ -3,6 +3,7 @@ import { cardTable } from '$lib/server/db/schema';
 import { fail, redirect } from '@sveltejs/kit';
 import { and, eq } from 'drizzle-orm';
 import type { PageServerLoad, Actions } from './$types';
+import { addToCookieStore } from '../../../lib/server/db/cookieutil';
 
 export const load: PageServerLoad = async ({ params: { cardEdit } }) => {
 	const [viewKey, editKey] = cardEdit.split('_');
@@ -31,7 +32,7 @@ export const load: PageServerLoad = async ({ params: { cardEdit } }) => {
 };
 
 export const actions: Actions = {
-	createcard: async ({ request }) => {
+	createcard: async ({ request, cookies }) => {
 		const data = await request.formData();
 
 		const title: string = data.get('title') as string;
@@ -50,6 +51,9 @@ export const actions: Actions = {
 			.returning({ view: cardTable.viewKey, edit: cardTable.editKey });
 
 		const { view, edit } = res[0];
+
+		addToCookieStore(cookies, title, view, edit);
+
 		console.log('created', view);
 
 		redirect(301, `/${view}_${edit}`);

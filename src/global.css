@@ -52,3 +52,10 @@ form {
 	padding: 1rem;
 	border-radius: 0.25rem;
 }
+
+ul,
+ol,
+li {
+	list-style: none;
+	padding: 0;
+}
