@@ -8,6 +8,10 @@
 pnpm i
 pnpm run dev
 
+# in root ".env" file (create if not exist)
 # you also need a postgres db set up and a connection string...
-DATABASE_URL
+DATABASE_URL=<...some long connections string...>
 ```
+
+Framework: [svelte](https://svelte.dev/)\
+DB orm: [drizzle](https://orm.drizzle.team/)
