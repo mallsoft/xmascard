@@ -42,11 +42,17 @@
 	<pre>qrcode error: {_qrError.message}</pre>
 {:else}
 	<canvas bind:this={_canvas}></canvas>
+	<p>Your 🎄 card: <a href="{content}" target="_blank">{content}</a> 🤩</p>
 {/if}
 
 <style>
 	canvas {
 		border-radius: 4px;
 		display: block;
+		margin: 0 auto;
+	}
+	p {
+		color: white;
+		font-size: large;
 	}
 </style>
