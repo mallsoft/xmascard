@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Santa from '$lib/components/Santa.svelte';
 	let { data } = $props();
 </script>
 
@@ -8,7 +9,6 @@
 		<button type="submit">remove</button>
 	</form>
 {/snippet}
-
 <article>
 	<a href="/create">create a new xmas card!</a>
 
@@ -28,6 +28,8 @@
 		</section>
 	{/if}
 </article>
+
+<Santa />
 
 <style>
 	article {
