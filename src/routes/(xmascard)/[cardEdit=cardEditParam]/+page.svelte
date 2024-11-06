@@ -5,7 +5,13 @@
 	let { data } = $props();
 </script>
 
+
 <article>
+	<div>
+		<a href="/">Back</a>
+		<a href="/{data.key}">Go to card</a>
+	</div>
+
 	{#if data.key}
 		<h1>Sprinkle some more x-mas spirit on dat!</h1>
 		<QrButton key={data.key} />
@@ -27,6 +33,10 @@
 </article>
 
 <style>
+	div {
+		display: flex;
+		justify-content: space-between;
+	}
 	article {
 		flex-grow: 1;
 		display: flex;
