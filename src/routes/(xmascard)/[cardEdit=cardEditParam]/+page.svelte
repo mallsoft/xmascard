@@ -6,12 +6,20 @@
 </script>
 
 <article>
+	<nav>
+		<a href="/">Back</a>
+		{#if data.key}
+			<a href="/{data.key}">Go to card</a>
+		{/if}
+	</nav>
+
 	{#if data.key}
 		<h1>Sprinkle some more x-mas spirit on dat!</h1>
 		<QrButton key={data.key} />
 	{:else}
 		<h1>Create a new xmas card!</h1>
 	{/if}
+
 	<form
 		use:enhance
 		action="?/{data.key ? 'editcard' : 'createcard'}"
@@ -27,6 +35,11 @@
 </article>
 
 <style>
+	nav {
+		display: flex;
+		justify-content: space-between;
+	}
+
 	article {
 		flex-grow: 1;
 		display: flex;

@@ -1,5 +1,5 @@
 import { slugNanoId } from './nano';
-import { integer, pgTable, text, timestamp } from 'drizzle-orm/pg-core';
+import { integer, jsonb, pgTable, text, timestamp } from 'drizzle-orm/pg-core';
 
 export const cardTable = pgTable('cards', {
 	id: integer('id').generatedByDefaultAsIdentity().primaryKey(),
@@ -12,5 +12,6 @@ export const cardTable = pgTable('cards', {
 		.$defaultFn(() => slugNanoId()),
 	createdAt: timestamp('created_at').defaultNow().notNull(),
 	cardTitle: text('card_title').notNull(),
-	cardText: text('card_text')
+	cardText: text('card_text'),
+	cardMeta: jsonb('card_meta')
 });
